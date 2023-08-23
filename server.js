@@ -15,9 +15,16 @@ const background = true;
 const casOd = "2023-08-22T22:00:00.000Z";
 const casDo = "2023-08-23T21:59:59.999Z";
 
-const queryParams = `casOd=${encodeURIComponent(casOd)}&casDo=${encodeURIComponent(casDo)}&krajId=${krajId}&background=${background}&stavIds=${stavIds.join('&stavIds=')}`;
 
 const refresh = () => {
+    const currentDate = new Date();
+    const tenMinutesAgo = new Date(currentDate.getTime() - 10 * 60 * 1000); // Subtract 10 minutes in milliseconds
+
+    const formattedDate = tenMinutesAgo.toISOString();
+    const formattedDate2 = currentDate.toISOString();
+
+    const queryParams = `casOd=${encodeURIComponent(formattedDate)}&casDo=${encodeURIComponent(formattedDate2)}&krajId=${krajId}&background=${background}&stavIds=${stavIds.join('&stavIds=')}`;
+
     console.log("Date now: " + startTimeStamp);
     console.log("Date: " + endTimeStamp);
     
@@ -29,7 +36,7 @@ const refresh = () => {
             console.log(`Incident ID ${incident.id}`);
             console.log(`Timestamp of Report: ${incident.casOhlaseni}`);
             console.log(`Description: ${incident.poznamkaProMedia}`);
-            console.log(`Location:, ${incident.obec}`);
+            console.log(`Location: ${incident.obec}`);
             console.log('---');
         });
     })
