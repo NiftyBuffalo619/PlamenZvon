@@ -29,10 +29,11 @@ const sendMessage = async (incident) => {
         .setTitle("Hasičský výjezd")
         .setDescription(`:notepad_spiral: ${incident.poznamkaProMedia}`)
         .setColor(hexToDecimal("#fc2003"))
-        .setAuthor({ name: "FireBrno", url: "https://udalosti.firebrno.cz/" })
+        .setAuthor({ name: "FireBrno", url: "https://udalosti.firebrno.cz/" }) // Firefighters from Brno are the source of informations
         .addFields(
+            { name: `:fire_engine: Výjezdová jednotka: ${incident.ORP}`, value: ` ` },
             { name: `:calendar: ${dateObject.toLocaleDateString('cs-CZ', options)}`, value: ` ` },
-            { name: `:map: ${incident.obec}`, value: ` ` },
+            { name: `:map: ${incident.obec} ${incident.ulice}`, value: ` ` },
         )
         ;
 
