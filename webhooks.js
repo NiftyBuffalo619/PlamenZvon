@@ -37,10 +37,10 @@ const sendMessage = async (incident) => {
         .setAuthor({ name: "FireBrno", url: "https://udalosti.firebrno.cz/", iconUrl: FireIconUrl }) // Firefighters from Brno are the source of informations
         .addFields(
             { name: `:notepad_spiral: ${incident.poznamkaProMedia}`, value: ` ` },
-            { name: `:fire_engine: Výjezdová jednotka: ${incident.ORP}`, value: ` ` },
+            { name: `:fire_engine: Výjezdová jednotka(ORP): ${incident.ORP}`, value: ` ` },
             { name: `:calendar: ${dateObject.toLocaleDateString('cs-CZ', options)}`, value: ` ` },
             { name: `:map: ${incident.obec} ${incident.ulice}`, value: ` ` },
-            { name: `:motorway: ${road}`, value: ` ` },
+            { name: `:motorway:Silnice: ${road}`, value: ` ` },
         )
         ;
 
