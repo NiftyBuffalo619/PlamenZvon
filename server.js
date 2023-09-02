@@ -11,6 +11,13 @@ app.get('/', (req , res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
+const os = require('os');
+app.get('/status', (req , res) => {
+    const cpuInfo = os.cpus();
+    const totalMemory = os.totalmem();
+    const freeMemory = os.freemem();
+    res.json([{ CPU: cpuInfo }, { totalMemory: totalMemory, freeMemory: freeMemory }]);
+});
 const API_URL = process.env.API_URL;
 const Request_Interval = 120000; // milliseconds
 const PORT = process.env.PORT || 80; // port number
@@ -23,11 +30,12 @@ const background = true;
 const casOd = "2023-08-22T22:00:00.000Z";
 const casDo = "2023-08-23T21:59:59.999Z";
 
+let FetchedIncidents = [];
 const refresh = () => {
     const currentDate = new Date();
-    const tenMinutesAgo = new Date(currentDate.getTime() - 20 * 60 * 1000); // Subtract 20 minutes in milliseconds
+    const oneHourAgo = new Date(currentDate.getTime() - 100 * 60 * 1000); // Subtract 60 minutes in milliseconds
 
-    const formattedDate = tenMinutesAgo.toISOString();
+    const formattedDate = oneHourAgo.toISOString();
     const formattedDate2 = currentDate.toISOString();
 
     const queryParams = `casOd=${encodeURIComponent(formattedDate)}&casDo=${encodeURIComponent(formattedDate2)}&krajId=${krajId}&background=${background}&stavIds=${stavIds.join('&stavIds=')}`;
@@ -37,12 +45,15 @@ const refresh = () => {
         const incidents = response.data;
 
         incidents.forEach(incident => {
-            console.log(`Incident ID ${incident.id}`);
-            console.log(`Timestamp of Report: ${incident.casOhlaseni}`);
-            console.log(`Description: ${incident.poznamkaProMedia}`);
-            console.log(`Location: ${incident.obec}`);
-            console.log('---');
-            webhook.sendMessage(incident);
+            if (!FetchedIncidents.includes(incident.casOhlaseni)) {
+                console.log(`Incident ID ${incident.id}`);
+                console.log(`Timestamp of Report: ${incident.casOhlaseni}`);
+                console.log(`Description: ${incident.poznamkaProMedia}`);
+                console.log(`Location: ${incident.obec}`);
+                console.log('---');
+                webhook.sendMessage(incident);
+                FetchedIncidents.push(incident.casOhlaseni);
+            }
         });
     })
     .catch(err => {

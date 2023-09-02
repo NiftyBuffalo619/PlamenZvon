@@ -89,6 +89,9 @@ const getSubEventType = (subeventId) => {
         case 3211:
             return "Vyproštění osob";
         break;
+        case 3212:
+            return "Uvolění komunikace, odtažení";
+        break;
         case 3213:
             return ":broom:Úklid vozovky";
         break;
