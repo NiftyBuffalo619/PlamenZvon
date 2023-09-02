@@ -21,6 +21,8 @@ const sendMessage = async (incident) => {
         var EventName = getEventType(incident.typId);
         var SubEventName = getSubEventType(incident.podtypId); 
         var dateObject = new Date(incident.casOhlaseni);
+        var street = incident.ulice;
+        if (street == null) { street = ":x:"; }
 
         const options = {
             year: 'numeric', 
@@ -39,7 +41,7 @@ const sendMessage = async (incident) => {
             { name: `:notepad_spiral: ${incident.poznamkaProMedia}`, value: ` ` },
             { name: `:fire_engine: Výjezdová jednotka(ORP): ${incident.ORP}`, value: ` ` },
             { name: `:calendar: ${dateObject.toLocaleDateString('cs-CZ', options)}`, value: ` ` },
-            { name: `:map: ${incident.obec} ${incident.ulice}`, value: ` ` },
+            { name: `:map: ${incident.obec} ${street}`, value: ` ` },
             { name: `:motorway:Silnice: ${road}`, value: ` ` },
         )
         ;
@@ -91,7 +93,7 @@ const getSubEventType = (subeventId) => {
             return ":broom:Úklid vozovky";
         break;
         case 3214:
-            return "Se zraněním";
+            return ":stethoscope:Se zraněním";
         break;
         case 3501:
             return "Odstranění nebezpečných stavů";

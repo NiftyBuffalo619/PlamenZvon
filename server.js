@@ -12,7 +12,7 @@ app.get('/', (req , res) => {
 });
 
 const API_URL = process.env.API_URL;
-const Request_Interval = 10000; // milliseconds
+const Request_Interval = 120000; // milliseconds
 const PORT = process.env.PORT || 80; // port number
 const startTimeStamp = Date.now() + new Date().getTime();
 const endTimeStamp = startTimeStamp + (60 * 60 * 1000);
@@ -25,7 +25,7 @@ const casDo = "2023-08-23T21:59:59.999Z";
 
 const refresh = () => {
     const currentDate = new Date();
-    const tenMinutesAgo = new Date(currentDate.getTime() - 10 * 60 * 1000); // Subtract 10 minutes in milliseconds
+    const tenMinutesAgo = new Date(currentDate.getTime() - 20 * 60 * 1000); // Subtract 20 minutes in milliseconds
 
     const formattedDate = tenMinutesAgo.toISOString();
     const formattedDate2 = currentDate.toISOString();
