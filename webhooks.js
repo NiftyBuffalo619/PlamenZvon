@@ -1,28 +1,20 @@
 const axios = require('axios');
 const webhook_url = process.env.WEBHOOK_URL;
-const { EmbedBuilder, WebhookClient } = require('discord.js');
+const { EmbedBuilder, WebhookClient, hyperlink } = require('discord.js');
 const webhookClient = new WebhookClient({ url: webhook_url });
 const FireIconUrl = "https://scontent.fprg1-1.fna.fbcdn.net/v/t39.30808-6/308660296_458415059646611_5759471644398264944_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a2f6c7&_nc_ohc=Hkm5MsDfVAUAX8e6-lN&_nc_ht=scontent.fprg1-1.fna&oh=00_AfDBYpYQ8uME6IujO4rvjkUC_U6Jy60ZgfpsF51BRRdwNA&oe=64F73036";
-
+const googleMaps = require('./googleMaps');
 const sendMessage = async (incident) => {
     try {
-        /*const embed = new EmbedBuilder()
-        .setTitle("Hasičský Výjezd")
-        .setAuthor({ name: "PlamenZvon" })
-        .setColor(hexToDecimal("#fc2003"))
-        .addFields(
-            { name: ":notepad_spiral:", value: `${incident.id}` },
-            { name: ":calendar:", value: `${incident.casOhlaseni}` },
-            { name: ":map:", value: `${incident.obec}` },
-            { description: `${incident.poznamkaProMedia}` }
-        );*/
+        //LOCATION
+        const GoogleMapsParams = googleMaps.getUrl(incident.obec , incident.ulice , incident.silnice);
         var road = incident.silnice;
         if (road == null) { road = ":x:"; }
         var EventName = getEventType(incident.typId);
         var SubEventName = getSubEventType(incident.podtypId); 
         var dateObject = new Date(incident.casOhlaseni);
         var street = incident.ulice;
-        if (street == null) { street = ":x:"; }
+        if (street == null) { street = ""; }
 
         const options = {
             year: 'numeric', 
@@ -41,8 +33,9 @@ const sendMessage = async (incident) => {
             { name: `:notepad_spiral: ${incident.poznamkaProMedia}`, value: ` ` },
             { name: `:fire_engine: Výjezdová jednotka(ORP): ${incident.ORP}`, value: ` ` },
             { name: `:calendar: ${dateObject.toLocaleDateString('cs-CZ', options)}`, value: ` ` },
-            { name: `:map: ${incident.obec} ${street}`, value: ` ` },
+            { name: `:map: ${incident.obec} ${street}`, value: ` `},
             { name: `:motorway:Silnice: ${road}`, value: ` ` },
+            { name: `<:google_maps_icon:1147865189073563648> Google Maps `, value: `[Google Maps](https://www.google.com/maps?q=${GoogleMapsParams})` },
         )
         ;
 
@@ -86,6 +79,9 @@ const getSubEventType = (subeventId) => {
         case 3106:
             return "Polní porost, tráva";
         break;
+        case 3111:
+            return "Odpad, ostatní";
+        break;
         case 3211:
             return "Vyproštění osob";
         break;
@@ -97,6 +93,9 @@ const getSubEventType = (subeventId) => {
         break;
         case 3214:
             return ":stethoscope:Se zraněním";
+        break;
+        case 3401:
+            return "Na pozemní komunikaci";
         break;
         case 3501:
             return "Odstranění nebezpečných stavů";
