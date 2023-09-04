@@ -61,7 +61,16 @@ const refresh = () => {
     });
 }
 
+const AutoRefreshData = () => {
+    // Clearing the Array to prevent using too much memory
+    FetchedIncidents = [];
+}
+
 setInterval(refresh, Request_Interval);
+setInterval(() => {
+    AutoRefreshData();
+    console.log(`Successfully cleared Fetched Incidents`)
+}, 1000 * 60 * 60 * 2);
 
 app.listen(PORT , () => {
     console.log(`Server is running on ${PORT}`);
