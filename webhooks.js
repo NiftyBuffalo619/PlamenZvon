@@ -112,6 +112,9 @@ const getSubEventType = (subeventId) => {
         case 3534:
             return ":hospital:Transport pacienta";
         break;
+        case 3543:
+            return "Transport pacienta";
+        break;
     }
 }
 
