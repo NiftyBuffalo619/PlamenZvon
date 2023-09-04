@@ -8,6 +8,7 @@ npm install
 ```
 
 After you have installed all dependencies create a .env file and add the following variables
+```
 API_URL= #Place you API URL of your Fire Department here
 WEBHOOK_URL= # Here specify you discord webhook URL
 ```
