@@ -76,6 +76,9 @@ const getEventType = (eventId) => {
 
 const getSubEventType = (subeventId) => {
     switch (subeventId) {
+        case 3109:
+            return "Popelnice, kontejner";
+        break;
         case 3106:
             return "Polní porost, tráva";
         break;
