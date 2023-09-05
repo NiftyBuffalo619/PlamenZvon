@@ -82,6 +82,9 @@ const getSubEventType = (subeventId) => {
         case 3106:
             return "Polní porost, tráva";
         break;
+        case 3108:
+            return "Dopravní prostředky";
+        break;
         case 3111:
             return "Odpad, ostatní";
         break;
@@ -96,6 +99,9 @@ const getSubEventType = (subeventId) => {
         break;
         case 3214:
             return ":stethoscope:Se zraněním";
+        break;
+        case 3527:
+            return "Čerpání vody";
         break;
         case 3401:
             return "Na pozemní komunikaci";
