@@ -1,6 +1,6 @@
 const axios = require('axios');
 const webhook_url = process.env.WEBHOOK_URL;
-const { EmbedBuilder, WebhookClient, hyperlink } = require('discord.js');
+const { EmbedBuilder, WebhookClient } = require('discord.js');
 const webhookClient = new WebhookClient({ url: webhook_url });
 const FireIconUrl = "https://scontent.fprg1-1.fna.fbcdn.net/v/t39.30808-6/308660296_458415059646611_5759471644398264944_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a2f6c7&_nc_ohc=Hkm5MsDfVAUAX8e6-lN&_nc_ht=scontent.fprg1-1.fna&oh=00_AfDBYpYQ8uME6IujO4rvjkUC_U6Jy60ZgfpsF51BRRdwNA&oe=64F73036";
 const googleMaps = require('./googleMaps');
@@ -76,6 +76,9 @@ const getEventType = (eventId) => {
 
 const getSubEventType = (subeventId) => {
     switch (subeventId) {
+        case 3101:
+            return "Nízké budovy";
+        break;
         case 3109:
             return "Popelnice, kontejner";
         break;
@@ -115,8 +118,14 @@ const getSubEventType = (subeventId) => {
         case 3528:
             return ":test_tube:Měření koncentrací";
         break;
+        case 3528:
+            return "";
+        break;
         case 3529:
             return "Z hloubky";
+        break;
+        case 3530:
+            return "AED";
         break;
         case 3534:
             return ":hospital:Transport pacienta";
