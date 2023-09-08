@@ -109,6 +109,12 @@ const getSubEventType = (subeventId) => {
         case 3401:
             return "Na pozemní komunikaci";
         break;
+        case 3402:
+            return "Do půdy";
+        break;
+        case 3404:
+            return "Do ovzduší";
+        break;
         case 3501:
             return "Odstranění nebezpečných stavů";
         break;
