@@ -30,7 +30,7 @@ const sendMessage = async (incident) => {
         .setColor(hexToDecimal("#fc2003"))
         .setAuthor({ name: "FireBrno", url: "https://udalosti.firebrno.cz/", iconUrl: FireIconUrl }) // Firefighters from Brno are the source of informations
         .addFields(
-            { name: `:notepad_spiral: ${incident.poznamkaProMedia}`, value: ` ` },
+            { name: `:notepad_spiral:`, value: `${incident.poznamkaProMedia}` },
             { name: `:fire_engine: Výjezdová jednotka(ORP): ${incident.ORP}`, value: ` ` },
             { name: `:calendar: ${dateObject.toLocaleDateString('cs-CZ', options)}`, value: ` ` },
             { name: `:map: ${incident.obec} ${street}`, value: ` `},
@@ -79,6 +79,9 @@ const getSubEventType = (subeventId) => {
         case 3101:
             return "Nízké budovy";
         break;
+        case 3103:
+            return "Průmyslové, zemědělské objekty, sklady";
+        break;
         case 3109:
             return "Popelnice, kontejner";
         break;
@@ -102,6 +105,9 @@ const getSubEventType = (subeventId) => {
         break;
         case 3214:
             return ":stethoscope:Se zraněním";
+        break;
+        case 3523:
+            return "Uzvařené prostory, výtah";
         break;
         case 3527:
             return "Čerpání vody";
