@@ -44,6 +44,7 @@ const refresh = () => {
 
         incidents.forEach(incident => {
             if (!FetchedIncidents.includes(incident.casOhlaseni)) {
+                console.log(`---`);
                 console.log(`Incident ID ${incident.id}`);
                 console.log(`Timestamp of Report: ${incident.casOhlaseni}`);
                 console.log(`Description: ${incident.poznamkaProMedia}`);
@@ -61,14 +62,19 @@ const refresh = () => {
 
 const AutoRefreshData = () => {
     // Clearing the Array to prevent using too much memory
-    FetchedIncidents = [];
+    var currentTime = new Date();
+    var midnight = new Date();
+    midnight.setHours(0,0,0,0);
+    if (currentTime.getTime() === midnight.getTime()) {
+        FetchedIncidents = [];
+        console.log(`[DEBUG][${currentTime.getHours()}][${currentTime.getMinutes()}][${currentTime.getSeconds()}] callouts cleared`);
+    }
 }
 
 setInterval(refresh, Request_Interval);
 setInterval(() => {
     AutoRefreshData();
-    console.log(`Successfully cleared Fetched Incidents`)
-}, 1000 * 60 * 60 * 2);
+}, 1000 * 60);
 
 app.listen(PORT , () => {
     console.log(`Server is running on ${PORT}`);
