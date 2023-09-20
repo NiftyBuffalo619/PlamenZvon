@@ -124,6 +124,9 @@ const getSubEventType = (subeventId) => {
         case 3501:
             return "Odstranění nebezpečných stavů";
         break;
+        case 3502:
+            return "Spolupráce ze složkama IZS";
+        break;
         case 3505:
             return "Odstranění stromu";
         break;
