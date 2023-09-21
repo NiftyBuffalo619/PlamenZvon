@@ -36,6 +36,7 @@ const sendMessage = async (incident) => {
             { name: `:map: ${incident.obec} ${street}`, value: ` `},
             { name: `:motorway:Silnice: ${road}`, value: ` ` },
             { name: `<:google_maps_icon:1147865189073563648> Google Maps `, value: `[Google Maps](https://www.google.com/maps?q=${GoogleMapsParams})` },
+            { name: `ID Výjezdu: ${incident.id}`, value: `Pro detailní zobrazení výjezdu` },
         )
         ;
 
