@@ -4,7 +4,7 @@ const { EmbedBuilder, WebhookClient } = require('discord.js');
 const webhookClient = new WebhookClient({ url: webhook_url });
 const FireIconUrl = "https://scontent.fprg1-1.fna.fbcdn.net/v/t39.30808-6/308660296_458415059646611_5759471644398264944_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a2f6c7&_nc_ohc=Hkm5MsDfVAUAX8e6-lN&_nc_ht=scontent.fprg1-1.fna&oh=00_AfDBYpYQ8uME6IujO4rvjkUC_U6Jy60ZgfpsF51BRRdwNA&oe=64F73036";
 const googleMaps = require('./googleMaps');
-const sendMessage = async (incident) => {
+const sendMessage = async (incident, FireUnitsInfo) => {
     try {
         //LOCATION
         const GoogleMapsParams = googleMaps.getUrl(incident.obec , incident.ulice , incident.silnice);
@@ -37,9 +37,28 @@ const sendMessage = async (incident) => {
             { name: `:motorway:Silnice: ${road}`, value: ` ` },
             { name: `<:google_maps_icon:1147865189073563648> Google Maps `, value: `[Google Maps](https://www.google.com/maps?q=${GoogleMapsParams})` },
             { name: `ID Výjezdu: ${incident.id}`, value: `Pro detailní zobrazení výjezdu` },
+            { name: `:fire_engine: Vozidla / Technika`, value: ` `},
         )
         ;
-
+        /*if (!FireUnitsInfo === null) {
+            for (var unit of FireUnitsInfo) {
+                console.log(unit);
+                embed.addFields(
+                    { name: `${unit.jednotka}` , value: `Typ: ${unit.typ}` }
+                )
+            }
+        }*/
+        if (FireUnitsInfo !== null) {
+            FireUnitsInfo.forEach(unit => {
+                console.log(unit);
+                embed.addFields(
+                    { name: `:fire_engine: ${unit.jednotka}` , value: `Typ: ${unit.typ} ${unit.casOhlaseni}` }
+                )
+            });
+        }
+        else {
+            console.log(`Unit is null`);
+        }
     await webhookClient.send({
         content: "@everyone",
         username: "PlamenZvon",
@@ -129,7 +148,7 @@ const getSubEventType = (subeventId) => {
             return "Spolupráce ze složkama IZS";
         break;
         case 3505:
-            return "Odstranění stromu";
+            return ":evergreen_tree:Odstranění stromu";
         break;
         case 3528:
             return ":test_tube:Měření koncentrací";

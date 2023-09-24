@@ -44,13 +44,21 @@ const refresh = () => {
 
         incidents.forEach(incident => {
             if (!FetchedIncidents.includes(incident.casOhlaseni)) {
+                console.log(`${API_URL}udalosti/id/technika`);
+                axios.get(`${API_URL}udalosti/${incident.id}/technika`).then(response => {
+                    var FireUnitsInfo = response.data;
+                    webhook.sendMessage(incident , FireUnitsInfo);
+                }).catch(error => {
+                    console.log(`There was an error`);
+                    webhook.sendMessage(incident , FireUnitsInfo);
+                });
                 console.log(`---`);
                 console.log(`Incident ID ${incident.id}`);
                 console.log(`Timestamp of Report: ${incident.casOhlaseni}`);
                 console.log(`Description: ${incident.poznamkaProMedia}`);
                 console.log(`Location: ${incident.obec}`);
                 console.log('---');
-                webhook.sendMessage(incident);
+                //webhook.sendMessage(incident , FireUnitsInfo);
                 FetchedIncidents.push(incident.casOhlaseni);
             }
         });
