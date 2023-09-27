@@ -150,6 +150,9 @@ const getSubEventType = (subeventId) => {
         case 3505:
             return ":evergreen_tree:Odstranění stromu";
         break;
+        case 3521:
+            return ":droplet:Z Vody";
+        break;
         case 3528:
             return ":test_tube:Měření koncentrací";
         break;
