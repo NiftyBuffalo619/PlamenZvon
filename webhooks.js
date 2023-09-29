@@ -99,6 +99,9 @@ const getSubEventType = (subeventId) => {
         case 3101:
             return "Nízké budovy";
         break;
+        case 3102:
+            return "Výškové budovy";
+        break;
         case 3103:
             return "Průmyslové, zemědělské objekty, sklady";
         break;
