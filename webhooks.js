@@ -108,6 +108,9 @@ const getSubEventType = (subeventId) => {
         case 3109:
             return "Popelnice, kontejner";
         break;
+        case 3110:
+            return "Lesní porost";
+        break;
         case 3106:
             return "Polní porost, tráva";
         break;
