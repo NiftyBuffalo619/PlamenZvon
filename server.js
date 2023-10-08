@@ -75,7 +75,7 @@ const AutoRefreshData = () => {
     midnight.setHours(0,0,0,0);
     if (currentTime.getTime() === midnight.getTime()) {
         FetchedIncidents = [];
-        console.log(`[DEBUG][${currentTime.getHours()}][${currentTime.getMinutes()}][${currentTime.getSeconds()}] callouts cleared`);
+        console.log(`[DEBUG]` + `[${currentTime.getHours()}][${currentTime.getMinutes()}][${currentTime.getSeconds()}] callouts cleared`);
     }
 }
 
@@ -85,5 +85,5 @@ setInterval(() => {
 }, 1000 * 60);
 
 app.listen(PORT , () => {
-    console.log(`Server is running on ${PORT}`);
+    console.log(`[SERVER] Web Server is running on ${PORT}`);
 });
