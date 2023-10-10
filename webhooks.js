@@ -117,6 +117,9 @@ const getSubEventType = (subeventId) => {
         case 3108:
             return "Dopravní prostředky";
         break;
+        case 3110:
+            return "Lesní Porost";
+        break;
         case 3111:
             return "Odpad, ostatní";
         break;
