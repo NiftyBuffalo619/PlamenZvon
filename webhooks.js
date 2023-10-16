@@ -49,11 +49,13 @@ const sendMessage = async (incident, FireUnitsInfo) => {
             }
         }*/
         if (FireUnitsInfo !== null) {
+            console.log("Jednotky");
             FireUnitsInfo.forEach(unit => {
                 console.log(unit);
                 embed.addFields(
                     { name: `:fire_engine: ${unit.jednotka}` , value: `Typ: ${unit.typ} ${unit.casOhlaseni}` }
                 )
+                console.log(`${unit.jednotka} Typ: ${unit.typ} ${unit.casOhlaseni}`);
             });
         }
         else {
