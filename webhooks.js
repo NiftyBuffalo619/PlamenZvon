@@ -93,6 +93,24 @@ const getEventType = (eventId) => {
         case 3550:
             return "Záchrana osob a zvířat";
         break;
+        case 3600:
+            return "Formálně založená událost";
+        break;
+        case 3700:
+            return "Ostatní mimořádná událost";
+        break;
+        case 3800:
+            return "Planý poplach";
+        break;
+        case 3900:
+            return "Jiné zatím neurčeno";
+        break;
+        case 5000:
+            return "Událost na objekt";
+        break;
+        case 6000:
+            return "Pohotovost";
+        break;
     }
 }
 
@@ -106,6 +124,15 @@ const getSubEventType = (subeventId) => {
         break;
         case 3103:
             return "Průmyslové, zemědělské objekty, sklady";
+        break;
+        case 3104:
+            return "Shromaždiště osob";
+        break;
+        case 3105:
+            return "Podzemní prostory, tunely";
+        break;
+        case 3107:
+            return "Trafostanice, rozvodny";
         break;
         case 3109:
             return "Popelnice, kontejner";
@@ -137,8 +164,17 @@ const getSubEventType = (subeventId) => {
         case 3214:
             return ":stethoscope:Se zraněním";
         break;
+        case 3231:
+            return "Železniční";
+        break;
+        case 3241:
+            return "Letecká";
+        break;
         case 3523:
             return "Uzvařené prostory, výtah";
+        break;
+        case 3524:
+            return "Zasypané, zavalené";
         break;
         case 3527:
             return "Čerpání vody";
@@ -158,11 +194,17 @@ const getSubEventType = (subeventId) => {
         case 3502:
             return "Spolupráce ze složkama IZS";
         break;
+        case 3503:
+            return "Destrukce objektu";
+        break;
         case 3505:
             return ":evergreen_tree:Odstranění stromu";
         break;
         case 3521:
             return ":droplet:Z Vody";
+        break;
+        case 3525:
+            return "Otevření uzavřených prostor";
         break;
         case 3528:
             return ":test_tube:Měření koncentrací";
@@ -179,8 +221,46 @@ const getSubEventType = (subeventId) => {
         case 3534:
             return ":hospital:Transport pacienta";
         break;
+        case 3541:
+            return "Monitoring";
+        break;
+        case 3542:
+            return "Likvidace obížného hmyzu";
+        break;
         case 3543:
             return "Transport pacienta";
+        break;
+        case 3602:
+            return "Živelná pohroma";
+        case 3603:
+            return "Humanitární pomoc";
+        break;
+        case 3611:
+            return ":radioactive:Radiační nehoda, Havárie";
+        break;
+        case 3711:
+            return "Evakuace a ochrana obyvatel plošná";
+        break;
+        case 3911:
+            return "Zatím neurčeno";
+        break;
+        case 3931:
+            return "Zlomyslné volání";
+        break;
+        case 10001:
+            return "Signalizace EPS";
+        break;
+        case 10014:
+            return "Požár";
+        break;
+        case 10015:
+            return "Větrná smršť";
+        break;
+        case 10016:
+            return "Povodeň";
+        break;
+        case 10024:
+            return "Činnost jednotky";
         break;
     }
 }
