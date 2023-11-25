@@ -203,14 +203,27 @@ const getSubEventType = (subeventId) => {
         case 3521:
             return ":droplet:Z Vody";
         break;
+        case 3522:
+            return "Z výšky"
+        break;
+        case 3523:
+            return "Uzvavřené budovy, výtah";
+        break;
+        case 3524:
+            return "Zasypané, zavalené";
+        break;
         case 3525:
             return "Otevření uzavřených prostor";
+        break;
+        case 3526:
+            return "Odstraňování překážek";
+        break;
+        case 3527:
+            return "Čerpání vody";
         break;
         case 3528:
             return ":test_tube:Měření koncentrací";
         break;
-        case 3528:
-            return "";
         break;
         case 3529:
             return "Z hloubky";
@@ -230,6 +243,9 @@ const getSubEventType = (subeventId) => {
         case 3543:
             return "Transport pacienta";
         break;
+        case 3601:
+            return "Ostatní formálně založená událost";
+        break;
         case 3602:
             return "Živelná pohroma";
         case 3603:
@@ -240,6 +256,9 @@ const getSubEventType = (subeventId) => {
         break;
         case 3711:
             return "Evakuace a ochrana obyvatel plošná";
+        break;
+        case 3712:
+            return "Jiné";
         break;
         case 3911:
             return "Zatím neurčeno";
