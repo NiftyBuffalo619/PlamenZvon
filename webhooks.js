@@ -4,6 +4,7 @@ const { EmbedBuilder, WebhookClient } = require('discord.js');
 const webhookClient = new WebhookClient({ url: webhook_url });
 const FireIconUrl = "https://scontent.fprg1-1.fna.fbcdn.net/v/t39.30808-6/308660296_458415059646611_5759471644398264944_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a2f6c7&_nc_ohc=Hkm5MsDfVAUAX8e6-lN&_nc_ht=scontent.fprg1-1.fna&oh=00_AfDBYpYQ8uME6IujO4rvjkUC_U6Jy60ZgfpsF51BRRdwNA&oe=64F73036";
 const googleMaps = require('./googleMaps');
+const config = require('./config/LoadConfig');
 const sendMessage = async (incident, FireUnitsInfo) => {
     try {
         //LOCATION
@@ -66,6 +67,21 @@ const sendMessage = async (incident, FireUnitsInfo) => {
         username: "PlamenZvon",
         embeds: [ embed ],
     })
+    if (config.config.ntfy.allowed) {
+        const encodedTitle = Buffer.from(`Výjezd ${EventName} ${SubEventName}`, 'utf-8').toString('base64');
+        const headers = {
+            "Title": `=?UTF-8?B?${encodedTitle}?=`,
+            'Priority': '5'
+        }
+        await axios.post(`${config.config.ntfy.url}/${config.config.ntfy.topic}`, `${incident.poznamkaProMedia}` , { headers }).then(response => {
+            console.log(`Sent ntfy notification HTTP Status ${response.status}`);
+        }).catch(err => {
+            console.log(`Got an error while sending ntfy notification ${err.message}`);
+        });
+    }
+    else {
+        console.log("[SERVER]: NTFY not allowed not sending anything");
+    }
     }
     catch (err) {
         console.log(err);
