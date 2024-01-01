@@ -4,6 +4,7 @@ const axios = require('axios');
 const dotenv = require('dotenv').config();
 const path = require('path');
 const webhook = require('./webhooks');
+const config = require('./config/LoadConfig');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -20,7 +21,7 @@ app.get('/status', (req , res) => {
 });
 const API_URL = process.env.API_URL;
 const Request_Interval = 120000; // milliseconds
-const PORT = process.env.PORT || 80; // port number
+const PORT = config.config.app.port || 80; // port number
 const startTimeStamp = Date.now() + new Date().getTime();
 const endTimeStamp = startTimeStamp + (60 * 60 * 1000);
 

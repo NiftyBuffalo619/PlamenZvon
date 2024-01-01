@@ -5,6 +5,7 @@ var config;
 try {
     const config_file = yaml.load(fs.readFileSync("./config/config.yml", "utf-8"));
     config = config_file;
+    console.log("[CONFIG] Sucessfully loaded the config file");
 }
 catch (e) {
     console.log(`[CONFIG-ERROR]: An error occurred while loading the config file ${e.message}`);
